@@ -6,11 +6,15 @@
 template <typename T>
 class DoubleLinkedList {
 private:
-    Node* head{};
-    Node* tail{};
-    unsigned int size{};
+    Node<T>* head{};
+    Node<T>* tail{};
+    size_t size{};
 public:
-    
+    DoubleLinkedList() : head(nullptr), taill(nullptr), size(0) {}
+    ~DoubleLinkedList() {clear();}
+
+    void push_back()
+
 };
 
 #endif //DOUBLE_LINKED_LIST
