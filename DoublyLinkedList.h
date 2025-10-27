@@ -10,17 +10,30 @@ private:
     Node<T>* head{};
     Node<T>* tail{};
     size_t size{};
+
+    void copyFrom(const DoublyLinkedList& other) {
+        Node<T>* current = other.head;
+        while (current) {
+            push_back(current->data);
+            current = current->next;
+        }
+    }
+
 public:
     DoublyLinkedList() : head(nullptr), tail(nullptr), size(0) {}
     ~DoublyLinkedList() {clear();}
 
     DoublyLinkedList(const DoublyLinkedList& other)
         : head(nullptr), tail(nullptr), size(0) {
-        Node<T>* current = other.head;
-        while (current) {
-            push_back(current->data);
-            current = current->next;
+        copyFrom(ohter);
+    }
+
+    DoublyLinkedList& operator=(const DoublyLinkedList& other) {
+        if (this != &other) {
+            clear();
+            copyFrom(other);
         }
+        return *this;
     }
 
     void push_back(const T& value) {
@@ -63,6 +76,17 @@ public:
             head = nd;
         }
         ++size;
+    }
+
+    void clear() {
+        Node<T>* current = head;
+        while (current) {
+            Node<T>* next = current->next;
+            delete(current);
+            current = next;
+        }
+        head = tail = nullptr;
+        size = 0;
     }
 
     size_t get_size() {
