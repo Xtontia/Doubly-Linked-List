@@ -86,9 +86,9 @@ public:
 
         tail = tail->prev;
         if (tail)
-            tail->next = nullptr
+            tail->next = nullptr;
         else
-            head = nullptr
+            head = nullptr;
 
         delete temp;
         --size;
