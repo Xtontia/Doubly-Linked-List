@@ -25,7 +25,7 @@ public:
 
     DoublyLinkedList(const DoublyLinkedList& other)
         : head(nullptr), tail(nullptr), size(0) {
-        copyFrom(ohter);
+        copyFrom(other);
     }
 
     DoublyLinkedList& operator=(const DoublyLinkedList& other) {
