@@ -78,6 +78,42 @@ public:
         ++size;
     }
 
+    T pop_back() {
+        if (!tail) throw std::out_of_range("list is empty");
+
+        T value = std::move(tail->data);
+        Node<T>* temp = tail;
+
+        tail = tail->prev;
+        if (tail)
+            tail->next = nullptr
+        else
+            head = nullptr
+
+        delete temp;
+        --size;
+
+        return value;
+    }
+
+    T pop_front() {
+        if (!head) throw std::out_of_range("List is empty");
+
+        T value = std::move(head->data);
+        Node<T>* temp = head;
+
+        head = head->next;
+        if (head)
+            tail = nullptr;
+        else
+            head->prev = nullptr;
+
+        delete(temp);
+        --size;
+
+        return value;
+    }
+
     void clear() {
         Node<T>* current = head;
         while (current) {
