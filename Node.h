@@ -1,7 +1,7 @@
-#include <stdexcept>
-
 #ifndef NODE
 #define NODE
+
+#include <stdexcept>
 
 template <typename T>
 struct Node {

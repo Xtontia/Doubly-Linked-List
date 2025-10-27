@@ -1,18 +1,27 @@
+#ifndef DOUBLY_LINKED_LIST
+#define DOUBLY_LINKED_LIST
+
 #include "Node.h"
 #include <iostream>
 
-#ifndef DOUBLE_LINKED_LIST
-#define DOUBLE_LINKED_LIST
-
 template <typename T>
-class DoubleLinkedList {
+class DoublyLinkedList {
 private:
     Node<T>* head{};
     Node<T>* tail{};
     size_t size{};
 public:
-    DoubleLinkedList() : head(nullptr), tail(nullptr), size(0) {}
-    ~DoubleLinkedList() {clear();}
+    DoublyLinkedList() : head(nullptr), tail(nullptr), size(0) {}
+    ~DoublyLinkedList() {clear();}
+
+    DoublyLinkedList(const DoublyLinkedList& other)
+        : head(nullptr), tail(nullptr), size(0) {
+        Node<T>* current = other.head;
+        while (current) {
+            push_back(current->data);
+            current = current->next;
+        }
+    }
 
     void push_back(const T& value) {
         Node<T>* nd = new Node<T>(value);
@@ -56,21 +65,24 @@ public:
         ++size;
     }
 
-    size_t size() {
+    size_t get_size() {
         return this->size;
     }
 
     void print() {
-        if (!head) std::cout << "List is empty";
+        if (!head) {
+            std::cout << "List is empty";
+            return;
+        }
         else {
             Node<T>* tmp = head;
-            do {
+            while (tmp) {
                 std::cout << tmp->data << ' ';
                 tmp = tmp->next;
-            } while(tmp != nullptr);
+            }
             std::cout << "\n";
         }
     }
 };
 
-#endif //DOUBLE_LINKED_LIST
+#endif //DOUBLY_LINKED_LIST
