@@ -33,6 +33,26 @@ public:
         }
         ++size;
     }
+    void push_front(const T& value) {
+        Node<T>* nd = new Node<T>(value);
+        if (!head) head = tail = nd;
+        else {
+            nd->next = head;
+            head->prev = nd;
+            head = nd;
+        }
+        ++size;
+    }
+    void push_front(T&& value) {
+        Node<T>* nd = new Node<T>(std::move(value));
+        if (!head) head = tail = nd;
+        else {
+            nd->next = head;
+            head->prev = nd;
+            head = nd;
+        }
+        ++size;
+    }
 
 };
 
