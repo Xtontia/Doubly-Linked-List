@@ -104,9 +104,9 @@ public:
 
         head = head->next;
         if (head)
-            tail = nullptr;
-        else
             head->prev = nullptr;
+        else
+            tail = nullptr;
 
         delete(temp);
         --size;
