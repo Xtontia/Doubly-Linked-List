@@ -36,18 +36,8 @@ public:
         return *this;
     }
 
-    void push_back(const T& value) {
-        Node<T>* nd = new Node<T>(value);
-        if (!tail) head = tail = nd;
-        else {
-            tail->next = nd;
-            nd->prev = tail;
-            tail = nd;
-        }
-        ++size;
-    }
     void push_back(T&& value) {
-        Node<T>* nd = new Node<T>(std::move(value));
+        Node<T>* nd = new Node<T>(std::forward<T>(value));
         if (!tail) head = tail = nd;
         else {
             tail->next = nd;
@@ -57,18 +47,9 @@ public:
         ++size;
     }
 
-    void push_front(const T& value) {
-        Node<T>* nd = new Node<T>(value);
-        if (!head) head = tail = nd;
-        else {
-            nd->next = head;
-            head->prev = nd;
-            head = nd;
-        }
-        ++size;
-    }
+
     void push_front(T&& value) {
-        Node<T>* nd = new Node<T>(std::move(value));
+        Node<T>* nd = new Node<T>(std::forward<T>(value));
         if (!head) head = tail = nd;
         else {
             nd->next = head;
@@ -125,11 +106,11 @@ public:
         size = 0;
     }
 
-    size_t get_size() {
+    size_t get_size() const {
         return this->size;
     }
 
-    void print() {
+    void print() const {
         if (!head) {
             std::cout << "List is empty";
             return;
