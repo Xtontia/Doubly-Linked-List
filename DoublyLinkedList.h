@@ -125,11 +125,11 @@ public:
         size = 0;
     }
 
-    size_t get_size() {
+    size_t get_size() const {
         return this->size;
     }
 
-    void print() {
+    void print() const {
         if (!head) {
             std::cout << "List is empty";
             return;
